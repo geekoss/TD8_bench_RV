@@ -1,6 +1,7 @@
 from random import randint
 from time import time
 from sys import setrecursionlimit
+
 setrecursionlimit(500_000)
 
 
@@ -158,7 +159,10 @@ def benchmark(function, table_size):
     time_in_file(list_time_used, function, table_size)
 
 
-function_dict = {
+'''dictionnaries:
+-function_dict: function name to function
+-index_dict: integer name to function name'''
+function_dict = { 
   "bubble_sort": bubble_sort,
   "quick_sort": quick_sort,
   "merge_sort": merge_sort
@@ -168,6 +172,7 @@ index_dict = {
   1: "quick_sort",
   2: "merge_sort"
 }
+sizes = [10, 100, 1_000, 10_000, 100_000]  # list sizes to be tested
 
 
 def main():
@@ -179,9 +184,9 @@ def main():
         -function<string> : the name of the function executed
         -table_size<int> : the size of the table to sort
     '''
-    table_size = int(input("rentrez la taille du tableau à trier:"))
-    for cpt in range(3):
-        benchmark(index_dict[cpt], table_size)
+    for table_size in sizes:
+        for cpt in range(3):
+            benchmark(index_dict[cpt], table_size)
 
 
 if __name__ == '__main__':
